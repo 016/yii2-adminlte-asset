@@ -8,7 +8,7 @@ working for items too
 Usage
 ------------
 ### To Custom active class display
-will set active class to account/*, password/* and activity/index
+will set active class to account/\*, password/\* and activity/index
 
 ```
 $menuItems[] = [
