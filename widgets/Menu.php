@@ -188,6 +188,52 @@ class Menu extends \yii\widgets\Menu
      */
     protected function isItemActive($item)
     {
+        
+        //<====== NEW add activeRoute support Begin
+        
+        if (!isset($item['disableActiveRoute']) && !isset($item['activeRoute']) && !isset($item['items'])) {
+            //set default active route by module/controler name
+            if (isset($item['url'][0])) {
+                $tmpArr = explode('/', $item['url'][0]);
+                foreach ($tmpArr as $value) {
+                    if (!empty($value)) {
+                        $item['activeRoute'][] = trim($value);
+        
+                        //only need once
+                        break;
+                    }
+                }
+            }
+        }//set default activeRoute value for 99% condition
+        
+        
+        if (isset($item['activeRoute'])) {
+            $tmpRoute = '';
+            if (!empty(Yii::$app->controller->module->getUniqueId())) {
+                $tmpRoute .= Yii::$app->controller->module->getUniqueId().'/';
+            }//try load module
+        
+            //add controller name to check route string
+            $tmpRoute .= Yii::$app->controller->id;
+        
+            if (in_array($tmpRoute, $item['activeRoute'])) {
+                return true;
+            }
+        
+        
+            $tmpRoute .= '/'.\Yii::$app->controller->action->id;
+            if (in_array($tmpRoute, $item['activeRoute'])) {
+                return true;
+            }
+            //             eeDebug::show(Yii::$app->controller->module->getUniqueId());
+            //             eeDebug::show($tmpRoute, 1);
+        
+        }//active route check
+        
+        //NEW add activeRoute support End  ======>
+        
+        
+        
         if (isset($item['url']) && is_array($item['url']) && isset($item['url'][0])) {
             $route = $item['url'][0];
             if ($route[0] !== '/' && Yii::$app->controller) {
