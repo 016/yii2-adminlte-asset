@@ -1,1 +1,5 @@
 vendor
+/.settings/
+/.buildpath
+/.DS_Store
+/.project
