@@ -22,6 +22,9 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model <?= ltrim($generator->modelClass, '\\') ?> */
 /* @var $form yii\widgets\ActiveForm */
+
+$publicTemplate = '<div class="col-md-3">{label}</div> <div class="col-md-9">{input}{error}{hint}</div>';
+
 ?>
 
 <div class="<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-form box box-primary">
@@ -30,7 +33,11 @@ use yii\widgets\ActiveForm;
 
 <?php foreach ($generator->getColumnNames() as $attribute) {
     if (in_array($attribute, $safeAttributes)) {
-        echo "        <?= " . $generator->generateActiveField($attribute) . " ?>\n\n";
+        $tmpString = $generator->generateActiveField($attribute);
+        $tmpString = str_replace("')->", "', [
+                'template' => \$publicTemplate
+        ])->", $tmpString);
+        echo "        <?= " . $tmpString . " ?>\n\n";
     }
 } ?>
     </div>
