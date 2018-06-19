@@ -28,7 +28,7 @@ $publicTemplate = '<div class="col-md-3">{label}</div> <div class="col-md-9">{in
 ?>
 
 <div class="<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-form box box-primary">
-    <?= "<?php " ?>$form = ActiveForm::begin(); ?>
+    <?= "<?php " ?>$form = ActiveForm::begin(['options'=>['class'=>'form-horizontal']]); ?>
     <div class="box-body table-responsive">
 
 <?php foreach ($generator->getColumnNames() as $attribute) {
