@@ -14,6 +14,8 @@ if (empty($safeAttributes)) {
 }
 
 echo "<?php\n";
+
+// add after box-body if need x-scroll table-responsive
 ?>
 
 use yii\helpers\Html;
@@ -29,7 +31,7 @@ $publicTemplate = '<div class="col-md-3">{label}</div> <div class="col-md-9">{in
 
 <div class="<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-form box box-primary">
     <?= "<?php " ?>$form = ActiveForm::begin(['options'=>['class'=>'form-horizontal']]); ?>
-    <div class="box-body table-responsive">
+    <div class="box-body">
 
 <?php foreach ($generator->getColumnNames() as $attribute) {
     if (in_array($attribute, $safeAttributes)) {
