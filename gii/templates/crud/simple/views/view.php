@@ -13,6 +13,7 @@ echo "<?php\n";
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use common\components\CommonConst;
 
 /* @var $this yii\web\View */
 /* @var $model <?= ltrim($generator->modelClass, '\\') ?> */

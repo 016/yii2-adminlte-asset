@@ -12,13 +12,18 @@ $nameAttribute = $generator->getNameAttribute();
 echo "<?php\n";
 ?>
 
+use common\components\CommonConst;
 use yii\helpers\Html;
 use <?= $generator->indexWidgetType === 'grid' ? "yii\\grid\\GridView" : "yii\\widgets\\ListView" ?>;
 <?= $generator->enablePjax ? 'use yii\widgets\Pjax;' : '' ?>
 
+
 /* @var $this yii\web\View */
 <?= !empty($generator->searchModelClass) ? "/* @var \$searchModel " . ltrim($generator->searchModelClass, '\\') . " */\n" : '' ?>
+<?= !empty($generator->searchModelClass) ? "/* @var \$model " . ltrim($generator->searchModelClass, '\\') . " */\n" : '' ?>
 /* @var $dataProvider yii\data\ActiveDataProvider */
+
+
 
 $this->title = <?= $generator->generateString(Inflector::pluralize(Inflector::camel2words(StringHelper::basename($generator->modelClass)))) ?>;
 $this->params['breadcrumbs'][] = $this->title;

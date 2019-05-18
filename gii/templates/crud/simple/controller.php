@@ -105,6 +105,7 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
     public function actionCreate()
     {
         $model = new <?= $modelClass ?>();
+        $model->scenario = 'b-create';
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', <?= $urlParams ?>]);
@@ -124,6 +125,7 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
     public function actionUpdate(<?= $actionParams ?>)
     {
         $model = $this->findModel(<?= $actionParams ?>);
+        $model->scenario = 'b-update';
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', <?= $urlParams ?>]);

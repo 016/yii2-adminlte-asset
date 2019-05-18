@@ -20,6 +20,7 @@ echo "<?php\n";
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use common\components\CommonConst;
 
 /* @var $this yii\web\View */
 /* @var $model <?= ltrim($generator->modelClass, '\\') ?> */
